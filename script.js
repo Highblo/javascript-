@@ -36,9 +36,6 @@ button.addEventListener("click", () => {
   alert(`今日は${year}年${month}月${day}日です`);
 });
 
-const button2 = document.getElementsByClassName("button2");
-button2[0].onclick = () => alert("hello");
-
 const button3 = document.getElementById("button3");
 const p = document.getElementById("p");
 button3.addEventListener("click", () => {
