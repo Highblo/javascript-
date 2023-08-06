@@ -71,6 +71,9 @@
           if (window.innerHeight > fromTopDistance) {
             t.classList.add("show");
           }
+          if(window.scrollY === 0) {
+            t.classList.remove("show");
+          }
         });
       });
     </script>

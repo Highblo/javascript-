@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>carten</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .top {
+        background-color: black;
+        height: 100vh;
+        color: white;
+        text-align: center;
+        line-height: 100vh;
+        font-size: 3rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 48px;
+      }
+
+      .title {
+        margin-bottom: 4rem;
+      }
+
+      .title .animation span {
+        background-color: gray;
+        display: inline-block;
+      }
+
+      .even {
+        text-align: end;
+      }
+
+      .image {
+        display: flex;
+        justify-content: end;
+        margin-bottom: 25rem;
+      }
+
+      .even-image {
+        justify-content: start;
+      }
+
+      .image div {
+        width: 60%;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+
+      .animation {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .animation span {
+        overflow: hidden;
+      }
+
+      .animation span,
+      .animation img {
+        opacity: 0;
+      }
+      .animation.show span,
+      .animation.show img {
+        animation: show .01s .9s forwards;
+      }
+
+      @keyframes show {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+
+      .animation::before {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: aquamarine;
+        transform: translateX(-100%);
+      }
+
+      .animation.show::before {
+        animation: mask 1.8s forwards;
+      }
+
+      @keyframes mask {
+        0% {
+          transform: translateX(-100%);
+        }
+        45%,
+        55% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top">scrollanimation practice</div>
+    <div class="container">
+      <div>
+        <h1 class="title">
+          <span class="animation">タイトル</span>
+        </h1>
+        <div class="image">
+          <div class="animation">
+            <img src="../html/image/chaeyoung.jpg" alt="画像" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <h1 class="title even">
+          <span class="animation">タイトル</span>
+        </h1>
+        <div class="image even-image">
+          <div class="animation">
+            <img src="../html/image/chaeyoung.jpg" alt="画像" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <h1 class="title">
+          <span class="animation">タイトル</span>
+        </h1>
+        <div class="image">
+          <div class="animation">
+            <img src="../html/image/chaeyoung.jpg" alt="画像" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const targetE = document.querySelectorAll(".animation");
+      window.addEventListener("scroll", () => {
+        targetE.forEach((target) => {
+          let targetDistance =
+            target.getBoundingClientRect().top + target.clientHeight * 0.5;
+          if (window.innerHeight > targetDistance) {
+            target.classList.add("show");
+          }
+          if (window.scrollY === 0) {
+            target.classList.remove("show");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
