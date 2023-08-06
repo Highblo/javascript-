@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scroll</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .target {
+        padding: 8px;
+        margin: 100vh auto;
+        width: 400px;
+        height: 400px;
+        opacity: 0;
+        transform: translateY(80px);
+        transition: 0.8s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .box1 {
+        background-color: #bbffaa;
+      }
+      .box2 {
+        background-color: #00ffaa;
+      }
+      .box3 {
+        background-color: #ff00aa;
+      }
+
+      h1 {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 8px 24px;
+        opacity: 0;
+        transition: 1s;
+        transform: translateX(-160px);
+      }
+
+      .box2 h1 {
+        transform: translateX(160px);
+      }
+
+      .show h1 {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="target box1"><h1>box1</h1></div>
+    <div class="target box2"><h1>box1</h1></div>
+    <div class="target box3"><h1>box1</h1></div>
+    <script>
+      const target = document.querySelectorAll(".target");
+      window.addEventListener("scroll", () => {
+        target.forEach((t) => {
+          let fromTopDistance =
+            t.getBoundingClientRect().top + t.clientHeight * 0.4;
+          if (window.innerHeight > fromTopDistance) {
+            t.classList.add("show");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
